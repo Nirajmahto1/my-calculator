@@ -10,30 +10,41 @@
     <script src="actions.js"></script>
 </head>
 <body>
-    <div class="container">
-   <div class="wrapper">
+ 
+    <div class="main-loader" id="loader">
+     
+    
+    </div>
 
+    <div class="container"> 
+     
+       
+     
+   <div class="wrapper">
+    
     <div class="text-input">
     <textarea id="from" class="from-text"   name="from-text"></textarea>
-    <textarea id="to" class="to-text" name="from-text"></textarea>
+    <textarea id="to" class="to-text" name="from-text" disabled></textarea>
    </div>
    <ul class="controls">
     <li class="row from">
        <div class="icons">
         <i class="fa-solid fa-volume-high"></i>
-        <i class="fa-solid fa-copy"></i>
+        <i class="fa-solid fa-copy" onclick="copyClipfrom()"></i>
        </div>
-       <select name="" id="">
+       <select name="fromselect" id="fromselect">
         <option value="en">English</option>
+        <option value="hi">Hindi</option>
        </select>
     </li>
-    <li><i class="fa-solid fa-right-left"></i></li>
+    <li><i class="fa-solid fa-right-left" onclick="changeSelection()"></i></li>
     <li class="row to">
-        <select name="" id="">
+        <select name="toselect" id="toselect">
             <option value="hi">Hindi</option>
+            <option value="en">English</option>
            </select>
       <div class="icons">
-        <i class="fa-solid fa-copy"></i>
+        <i class="fa-solid fa-copy" onclick="copyClipto()"></i>
         <i class="fa-solid fa-volume-high"></i>
       </div>
        

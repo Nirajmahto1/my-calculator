@@ -1,10 +1,16 @@
 
 function translateApi(){
+  
+
     var fromTExt = document.getElementById("from").value;
+    
+  if(fromTExt){
+    document.getElementById("loader").style.display = "inline-block";
     const apiUrl = 'https://api.mymemory.translated.net/get?q='+fromTExt+'&langpair=en|hi';
 // Make a GET request
 fetch(apiUrl)
   .then(response => {
+    document.getElementById("loader").style.display = "none";
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -12,11 +18,33 @@ fetch(apiUrl)
   })
   .then(data => {
     
-    document.getElementById("to").value = data["matches"][1]["translation"]+data["matches"][0]["translation"];
+    document.getElementById("to").value = data["matches"][0]["translation"];
   })
   .catch(error => {
     console.error('Error:', error);
   });
+}else{
+  alert("Enter any text to translate");
+}
+}
+function copyClipfrom(){
+  var text = document.getElementById("from").value;
+
+  navigator.clipboard.writeText(text);
+
+}
+function copyClipto(){
+  var text = document.getElementById("to").value;
+  console.log(text);
+  navigator.clipboard.writeText(text);
+
+}
+function changeSelection(){
+  var from = document.getElementById("fromselect").value;
+  var to = document.getElementById("toselect").value;
+
+  document.getElementById("fromselect").value = to;
+  document.getElementById("toselect").value = from;
 }
 // function translateApi2(){
 //   var fromTExt = document.getElementById("from").value;
