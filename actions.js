@@ -7,7 +7,10 @@ function translateApi(){
   if(fromTExt){
     document.getElementById("loader").style.display = "inline-block";
     const apiUrl = 'https://api.mymemory.translated.net/get?q='+fromTExt+'&langpair=en|hi';
-// Make a GET request
+ if(document.getElementById("translate-comp").style.display == "block"){
+  document.getElementById("translate-comp").style.display = "none";
+  document.getElementById("loader").style.display = "block";
+ }
 fetch(apiUrl)
   .then(response => {
     document.getElementById("loader").style.display = "none";
