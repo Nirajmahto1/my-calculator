@@ -3,10 +3,11 @@ function translateApi(){
   
 
     var fromTExt = document.getElementById("from").value;
-    
+    var from = document.getElementById("fromselect").value;
+    var to = document.getElementById("toselect").value;
   if(fromTExt){
     document.getElementById("loader").style.display = "inline-block";
-    const apiUrl = 'https://api.mymemory.translated.net/get?q='+fromTExt+'&langpair=en|hi';
+    const apiUrl = 'https://api.mymemory.translated.net/get?q='+fromTExt+'&langpair='+from+'|'+to;
  if(document.getElementById("translate-comp").style.display == "block"){
   document.getElementById("translate-comp").style.display = "none";
   document.getElementById("loader").style.display = "block";
@@ -55,9 +56,9 @@ function copyClipto(){
 }
 function changeSelection(){
   var from = document.getElementById("fromselect").value;
+  var to = document.getElementById("toselect").value;
   var fromtext = document.getElementById("from").value;
   var totext = document.getElementById("to").value;
-  var to = document.getElementById("toselect").value;
   document.getElementById("to").value = fromtext;
   document.getElementById("from").value = totext;
   document.getElementById("fromselect").value = to;
