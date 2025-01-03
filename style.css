@@ -117,6 +117,7 @@ button{
        background-color: white;
         position: absolute;
         margin-bottom: 8%; 
+        box-sizing: border-box;
         color: #600ee4;
     }
     .translate-comp i{

@@ -27,7 +27,7 @@ fetch(apiUrl)
   .then(data => {
     
     document.getElementById("to").value = data["matches"][0]["translation"];
-    
+    setTimeout(transComp,2000)
    
   })
   .catch(error => {
@@ -38,21 +38,36 @@ fetch(apiUrl)
   document.getElementById("error-dialog").style.display = "flex";
 }
 }
-
+function transComp(){
+  document.getElementById("translate-comp").style.display = "none";
+}
 function dialogClose(){
   document.getElementById("error-dialog").style.display = "none";
 }
 function copyClipfrom(){
   var text = document.getElementById("from").value;
-
+  document.getElementById("copySquare").style.display ="inline-block"
+  document.getElementById("fromCopy").style.display ="none";
   navigator.clipboard.writeText(text);
+  setTimeout(squareTime,1000);
 
 }
+function squareTime(){
+  document.getElementById("copySquare").style.display ="none"
+  document.getElementById("fromCopy").style.display ="inline-block";
+}
+
 function copyClipto(){
   var text = document.getElementById("to").value;
-  console.log(text);
+  document.getElementById("copySquare2").style.display ="inline-block"
+  document.getElementById("toCopy").style.display ="none";
   navigator.clipboard.writeText(text);
+  setTimeout(squareTime2,1000);
 
+}
+function squareTime2(){
+  document.getElementById("copySquare2").style.display ="none"
+  document.getElementById("toCopy").style.display ="inline-block";
 }
 function changeSelection(){
   var from = document.getElementById("fromselect").value;
@@ -63,62 +78,4 @@ function changeSelection(){
   document.getElementById("from").value = totext;
   document.getElementById("fromselect").value = to;
   document.getElementById("toselect").value = from;
-}
-// function translateApi2(){
-//   var fromTExt = document.getElementById("from").value;
-//   var res = fetch("https://libretranslate.com/translate", {
-// 	method: "POST",
-// 	body: JSON.stringify({
-// 		q: fromTExt,
-// 		source: "auto",
-// 		target: "hi",
-// 		format: "text",
-// 		alternatives: 3,
-// 		api_key: ""
-// 	}),
-// 	headers: { "Content-Type": "application/json" }
-// });
-
-// console.log(res.json());
-// }
-function textToSpeech(){
-    const axios = require('axios');
-
-    const options = {
-    
-      method: 'POST',
-    
-      url: 'https://api.play.ht/v1/convert',
-    
-      headers: {
-    
-        'Content-Type': 'application/json',
-    
-        'Authorization': 'ebba2770091144b080b8853f53fd6189'
-    
-      },
-    
-      data: {
-    
-        text: 'Welcome to PlayHT!',
-    
-        voice: 'en_us_male',
-    
-        output_format: 'mp3'
-    
-      }
-    
-    };
-    
-    axios.request(options).then(response => {
-    
-      console.log(response.data);
-    
-    }).catch(error => {
-    
-      console.error(error);
-    
-    });
-
-
 }
