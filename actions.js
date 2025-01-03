@@ -11,6 +11,10 @@ function translateApi(){
 fetch(apiUrl)
   .then(response => {
     document.getElementById("loader").style.display = "none";
+    document.getElementById("translate-comp").style.display = "block";
+    console.log(document.getElementById("translate-comp").style.display);
+   
+    
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -19,13 +23,20 @@ fetch(apiUrl)
   .then(data => {
     
     document.getElementById("to").value = data["matches"][0]["translation"];
+    
+   
   })
   .catch(error => {
     console.error('Error:', error);
   });
+
 }else{
-  alert("Enter any text to translate");
+  document.getElementById("error-dialog").style.display = "flex";
 }
+}
+
+function dialogClose(){
+  document.getElementById("error-dialog").style.display = "none";
 }
 function copyClipfrom(){
   var text = document.getElementById("from").value;
@@ -41,8 +52,11 @@ function copyClipto(){
 }
 function changeSelection(){
   var from = document.getElementById("fromselect").value;
+  var fromtext = document.getElementById("from").value;
+  var totext = document.getElementById("to").value;
   var to = document.getElementById("toselect").value;
-
+  document.getElementById("to").value = fromtext;
+  document.getElementById("from").value = totext;
   document.getElementById("fromselect").value = to;
   document.getElementById("toselect").value = from;
 }
